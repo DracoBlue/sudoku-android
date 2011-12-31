@@ -28,6 +28,7 @@ PlayingField.prototype.initializeGrid = function()
 
 PlayingField.prototype.createAndInitializeGridElement = function(x, y)
 {
+    var that = this;
     var grid_element = jQuery('<li />');
     grid_element.text(x + 'x' + y);
     grid_element.bind('click', function()
