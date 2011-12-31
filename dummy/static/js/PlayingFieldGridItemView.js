@@ -19,6 +19,13 @@ PlayingFieldGridItemView = Backbone.View.extend({
 
     clickField: function(event)
     {
+        if (this.model.get('fixed'))
+        {
+            /*
+             * We cannot modify a fixed field!
+             */
+            return;
+        }
         console.log('Hit!', this.model.get('x'), this.model.get('y'));
 
         jsb.fireEvent('PlayingField::CLOSE');

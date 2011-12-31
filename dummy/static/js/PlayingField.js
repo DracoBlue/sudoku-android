@@ -34,7 +34,13 @@ PlayingField.prototype.initializeListeners = function()
         {
             for ( var y = 0; y < 4; y++)
             {
-                that.setFieldColor(x, y, data.field[x][y])
+                var color_string = data.field[x][y];
+                
+                that.grid_models[x][y].set({
+                    'fixed': color_string === 'empty' ? false : true
+                });
+                
+                that.setFieldColor(x, y, color_string);
             }
         }
     });
