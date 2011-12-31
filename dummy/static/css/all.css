@@ -31,7 +31,7 @@
 }
 
 .playing_field li.empty {
-    background-color: #333;
+    background-color: #aaaaaa;
 }
 
 
@@ -70,5 +70,5 @@
 }
 
 .choose_color_overlay li.empty {
-    background-color: #333;
+    background-color: #aaaaaa;
 }
