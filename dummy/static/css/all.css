@@ -72,3 +72,17 @@
 .choose_color_overlay li.empty {
     background-color: #aaaaaa;
 }
+
+.level_list {
+    width: 260px;
+    height: 300px;
+    padding: 20px;
+    background-color: #111111;
+}
+
+.level_list li {
+    background-color: #222222;
+    color: #ffffff;
+    margin: 10px 0;
+    padding: 10px 10px;
+}

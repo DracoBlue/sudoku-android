@@ -9,7 +9,7 @@ PlayingField = function(dom_element, options)
 
 };
 
-PlayingField.prototype.initializeListeners = function() 
+PlayingField.prototype.initializeListeners = function()
 {
     var that = this;
     jsb.on('PlayingField::OPEN', function()
@@ -20,6 +20,17 @@ PlayingField.prototype.initializeListeners = function()
     jsb.on('PlayingField::CLOSE', function()
     {
         that.dom_element.addClass('hide');
+    });
+
+    jsb.on('PlayingField::LOAD_LEVEL', function(data)
+    {
+        for ( var x = 0; x < 4; x++)
+        {
+            for ( var y = 0; y < 4; y++)
+            {
+                that.setFieldColor(x, y, data.field[x][y])
+            }
+        }
     });
 };
 
