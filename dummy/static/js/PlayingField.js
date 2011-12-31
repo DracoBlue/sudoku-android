@@ -29,7 +29,7 @@ PlayingField.prototype.initializeGrid = function()
 PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
 {
     var that = this;
-    
+
     /*
      * Backbone Model
      */
@@ -38,25 +38,32 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
         y: y,
         color: 'empty'
     });
-    
+
+    grid_model.bind('change:color', function()
+    {
+        that.onGridColorChanged(this);
+    });
+
     this.grid_models[x] = this.grid_models[x] || {};
     this.grid_models[x][y] = grid_model;
-    
-    var grid_view =  new PlayingFieldGridItemView({
+
+    var grid_view = new PlayingFieldGridItemView({
         model: grid_model
     });
 
     this.grid_dom_elements[x] = this.grid_dom_elements[x] || {};
     this.grid_dom_elements[x][y] = grid_view;
-    
+
     grid_view.render();
-    
+
     return grid_view;
 };
 
 PlayingField.prototype.initializeRandomData = function()
 {
-    var random_colors = ['red', 'green', 'blue', 'yellow', 'empty'];
+    var random_colors = [
+            'red', 'green', 'blue', 'yellow', 'empty'
+    ];
     for ( var x = 0; x < 4; x++)
     {
         for ( var y = 0; y < 4; y++)
@@ -65,6 +72,11 @@ PlayingField.prototype.initializeRandomData = function()
             this.setFieldColor(x, y, random_colors[random_position]);
         }
     }
+};
+
+PlayingField.prototype.onGridColorChanged = function(model)
+{
+    console.log('onGridColorChanged', model.get('x'), 'x', model.get('y'), ':', model.get('color'));
 };
 
 PlayingField.prototype.setFieldColor = function(x, y, color_string)
