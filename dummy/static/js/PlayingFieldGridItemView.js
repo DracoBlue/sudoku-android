@@ -11,7 +11,7 @@ PlayingFieldGridItemView = Backbone.View.extend({
     initialize: function()
     {
         var that = this;
-        that.model.bind('change:color', function()
+        that.model.bind('change', function()
         {
             that.render();
         });
@@ -39,6 +39,10 @@ PlayingFieldGridItemView = Backbone.View.extend({
         var element = jQuery(this.el);
         element.removeClass();
         element.addClass(this.model.get('color'));
+        if (this.model.get('fixed'))
+        {
+            element.addClass('fixed');
+        }
         element.text(this.model.get('x') + ' ' + this.model.get('y') + ': ' + this.model.get('color'));
     }
 
