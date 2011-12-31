@@ -16,6 +16,8 @@ JsBehaviourToolkit = {
 
     handlers: {},
     
+    listeners: [],
+    
     setPrefix: function(prefix) {
         this.prefix = prefix + '_';
         this.prefix_regexp = new RegExp(this.prefix + '([^\s]+)');
@@ -80,6 +82,43 @@ JsBehaviourToolkit = {
             jQuery(dom_element).removeClass(this.prefix, this.prefix + key);
         }
         
+    },
+    
+    fireEvent: function(name, values) {
+        values = values || {};
+        var listeners = this.listeners;
+        var listeners_length = listeners.length;
+        for (var i = 0; i < listeners_length; i++) {
+            var listener = listeners[i];
+            var is_regexp_match = (typeof listener[1] === 'RegExp' && listener[1].match(name));
+            
+            if (is_regexp_match || listener[1] === name) {
+                var filter = listener[2];
+                var is_match = true;
+                if (filter) {
+                    for (var filter_key in filter) {
+                        if (filter.hasOwnProperty(filter_key)) {
+                            is_match = is_match && (typeof values[filter_key] !== 'undefined' && filter[filter_key] === values[filter_key]);
+                        }
+                    }
+                }
+                
+                if (is_match) {
+                    listener[0](values);
+                }
+            }
+        }
+    },
+    
+    on: function(name_or_regexp, filter_or_cb, cb) {
+        var filter = filter_or_cb;
+        
+        if (!cb) {
+            filter = null;
+            cb = filter_or_cb;
+        }
+        
+        this.listeners.push([cb, name_or_regexp, filter || null]);
     }
 };
 
