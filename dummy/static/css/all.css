@@ -33,3 +33,42 @@
 .playing_field li.empty {
     background-color: #333;
 }
+
+
+
+.choose_color_overlay {
+    width: 260px;
+    height: 300px;
+    padding: 20px;
+    background-color: #111111;
+}
+
+.choose_color_overlay li {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+}
+
+.choose_color_overlay li.selected {
+    outline: #ffffff 2px solid;
+}
+
+.choose_color_overlay li.green {
+    background-color: green;
+}
+
+.choose_color_overlay li.red {
+    background-color: red;
+}
+
+.choose_color_overlay li.blue {
+    background-color: blue;
+}
+
+.choose_color_overlay li.yellow {
+    background-color: yellow;
+}
+
+.choose_color_overlay li.empty {
+    background-color: #333;
+}

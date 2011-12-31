@@ -17,9 +17,14 @@ PlayingFieldGridItemView = Backbone.View.extend({
         });
     },
 
-    clickField: function()
+    clickField: function(event)
     {
         console.log('Hit!', this.model.get('x'), this.model.get('y'));
+
+        jsb.fireEvent('PlayingField::CLOSE');
+        jsb.fireEvent('ChooseColorOverlay::OPEN', {
+            'field': this.model
+        });
     },
 
     render: function()
