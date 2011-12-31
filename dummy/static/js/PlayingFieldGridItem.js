@@ -1,0 +1,2 @@
+PlayingFieldGridItem = Backbone.Model.extend({
+});
