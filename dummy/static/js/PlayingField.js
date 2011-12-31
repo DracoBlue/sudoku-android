@@ -5,7 +5,22 @@ PlayingField = function(dom_element, options)
     this.dom_element = jQuery(dom_element);
     this.initializeGrid();
     this.initializeRandomData();
+    this.initializeListeners();
 
+};
+
+PlayingField.prototype.initializeListeners = function() 
+{
+    var that = this;
+    jsb.on('PlayingField::OPEN', function()
+    {
+        that.dom_element.removeClass('hide');
+    });
+
+    jsb.on('PlayingField::CLOSE', function()
+    {
+        that.dom_element.addClass('hide');
+    });
 };
 
 PlayingField.prototype.initializeGrid = function()

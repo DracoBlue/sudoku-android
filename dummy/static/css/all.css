@@ -1,4 +1,6 @@
-
+.hide {
+    display: none;
+}
 
 .playing_field {
     width: 300px;
@@ -29,5 +31,5 @@
 }
 
 .playing_field li.empty {
-    background-color: grey;
+    background-color: #333;
 }
