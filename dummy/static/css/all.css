@@ -1,0 +1,33 @@
+
+
+.playing_field {
+    width: 300px;
+    height: 300px;
+}
+
+
+.playing_field > ol > ol > li {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+}
+
+.playing_field li.green {
+    background-color: green;
+}
+
+.playing_field li.red {
+    background-color: red;
+}
+
+.playing_field li.blue {
+    background-color: blue;
+}
+
+.playing_field li.yellow {
+    background-color: yellow;
+}
+
+.playing_field li.empty {
+    background-color: grey;
+}
