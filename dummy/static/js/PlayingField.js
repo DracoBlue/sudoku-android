@@ -12,6 +12,12 @@ PlayingField = function(dom_element, options)
 PlayingField.prototype.initializeListeners = function()
 {
     var that = this;
+    
+    that.dom_element.find('.js_menu_button').bind('click', function() {
+        jsb.fireEvent('PlayingField::CLOSE');
+        jsb.fireEvent('LevelList::OPEN');
+    });
+    
     jsb.on('PlayingField::OPEN', function()
     {
         that.dom_element.removeClass('hide');
