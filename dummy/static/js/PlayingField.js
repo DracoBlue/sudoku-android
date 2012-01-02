@@ -122,6 +122,12 @@ PlayingField.prototype.setFieldColor = function(x, y, color_string)
     this.grid_models[x][y].set({
         'color': color_string
     });
+    
+    /*
+    
+    TODO: check for completeness, if complete emit Winning event
+    
+    */
 };
 
 jsb.registerHandler('playing_field', PlayingField);
