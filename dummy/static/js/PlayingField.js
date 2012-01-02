@@ -76,7 +76,7 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
         y: y,
         color: 'empty'
     });
-
+    
     grid_model.bind('change:color', function()
     {
         that.onGridColorChanged(this);
@@ -111,6 +111,11 @@ PlayingField.prototype.initializeRandomData = function()
         }
     }
 };
+
+/*
+TODO: add functionality to check for completeness and errors
+*/
+
 
 PlayingField.prototype.onGridColorChanged = function(model)
 {
