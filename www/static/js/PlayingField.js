@@ -4,6 +4,7 @@ PlayingField = function(dom_element, options)
     this.grid_models = {};
     this.dom_element = jQuery(dom_element);
     this.initializeGrid();
+    this.initializeCollections();
     this.initializeRandomData();
     this.initializeListeners();
 
@@ -72,6 +73,7 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
      * Backbone Model
      */
     var grid_model = new PlayingFieldGridItem({
+        id: (x + "," + y),
         x: x,
         y: y,
         color: 'empty'
@@ -97,6 +99,60 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
     return grid_view;
 };
 
+PlayingField.prototype.initializeCollections = function()
+{
+    var that = this;
+    
+    this.grid = new Grid();
+    window.grid = this.grid;
+    
+    _.each(this.grid_models, function(col) {
+        _.each(col, function(cell) {
+            that.grid.add(cell);
+        });
+    });
+    
+    this.grid.bind("change", function(cell){
+        //console.log(cell + " has changed");
+        //console.log(that.grid);
+        if (that.grid.isFilled()) {
+            //console.log("grid is filled");
+            that.grid.trigger("all_cells_filled");
+        };
+    });
+
+    this.rows = [];
+    this.cols = [];
+    
+    _.each(this.grid_models, function(col, x) {
+        _.each(col, function(cell, y){
+            that.rows[x] = that.rows[x] || new Line();
+            that.rows[x].add(cell);
+
+            that.cols[y] = that.cols[y] || new Line();
+            that.cols[y].add(cell);
+        });
+    });
+
+    this.grid.bind("all_cells_filled", function() {
+        
+        console.log('on all_cells_filled');
+        
+        var rows_and_cols = _.union(that.rows, that.cols)
+        //window.rows_and_cols = rows_and_cols;
+        
+        var win = _.reduce(rows_and_cols, function(memo, line) {
+            return memo && line.hasAllDifferentColors();
+        }, true );
+        
+        if (win) {
+            console.log("you win!!")
+            that.grid.trigger('WIN');
+        }
+    });
+    
+}
+
 PlayingField.prototype.initializeRandomData = function()
 {
     var random_colors = [
@@ -112,10 +168,6 @@ PlayingField.prototype.initializeRandomData = function()
     }
 };
 
-/*
-TODO: add functionality to check for completeness and errors
-*/
-
 
 PlayingField.prototype.onGridColorChanged = function(model)
 {
@@ -127,12 +179,7 @@ PlayingField.prototype.setFieldColor = function(x, y, color_string)
     this.grid_models[x][y].set({
         'color': color_string
     });
-    
-    /*
-    
-    TODO: check for completeness, if complete emit Winning event
-    
-    */
+
 };
 
 jsb.registerHandler('playing_field', PlayingField);

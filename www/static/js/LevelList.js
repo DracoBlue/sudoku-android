@@ -55,6 +55,21 @@ LevelList.prototype.initializeLevels = function()
         ]
     });
     
+    this.createLevel({
+        'name': 'Test Winning',
+        'field': [
+                [
+                        'blue',   'red',    'green',  'yellow'
+                ], [
+                        'yellow', 'blue',   'red',    'green'
+                ], [
+                        'green',  'yellow', 'blue',   'red'
+                ], [
+                        'red',    'green',  'yellow', 'empty'
+                ]
+        ]
+    });
+    
 };
 
 LevelList.prototype.createLevel = function(data)
