@@ -15,7 +15,8 @@ YouWon.prototype.initializeListeners = function()
     jsb.on('YouWon::OPEN', function(values)
     {
         that.dom_element.find('.js_name').text(values.level_name);
-        that.dom_element.find('.js_time').text(values.time_in_seconds + ' Sekunden!');
+        that.dom_element.find('.js_used_moves').text(values.used_moves == 1 ? (values.used_moves + ' Zug') : (values.used_moves + ' Züge'));
+        that.dom_element.find('.js_time').text(values.time_in_seconds + ' Sekunden');
         that.dom_element.removeClass('hide');
     });
 

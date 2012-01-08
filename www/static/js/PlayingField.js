@@ -5,6 +5,7 @@ PlayingField = function(dom_element, options)
     this.dom_element = jQuery(dom_element);
     this.level_name = null;
     this.start_time = null;
+    this.used_moves = 0;
     this.initializeGrid();
     this.initializeCollections();
     this.initializeRandomData();
@@ -34,6 +35,7 @@ PlayingField.prototype.initializeListeners = function()
     {
         that.level_name = data.name;
         that.start_time = new Date();
+        that.used_moves = 0;
         for ( var x = 0; x < 4; x++)
         {
             for ( var y = 0; y < 4; y++)
@@ -84,6 +86,7 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
     
     grid_model.bind('change:color', function()
     {
+        that.used_moves++;
         that.onGridColorChanged(this);
     });
 
@@ -155,10 +158,12 @@ PlayingField.prototype.initializeCollections = function()
             jsb.fireEvent('PlayingField::CLOSE');
             jsb.fireEvent('Level::FINISHED', {
                 "name": that.level_name,
+                "used_moves": that.used_moves,
                 "time_in_seconds": time_in_seconds
             });
             jsb.fireEvent('YouWon::OPEN', {
                 "level_name": that.level_name,
+                "used_moves": that.used_moves,
                 "time_in_seconds": time_in_seconds
             });
             
