@@ -1,0 +1,2 @@
+Level = Backbone.Model.extend({
+});
