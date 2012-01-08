@@ -11,16 +11,16 @@ ChooseColorOverlay.prototype.initializeListeners = function()
     var that = this;
     
     this.dom_element.find('li').bind('click', function() {
+        that.close();
+        
         var li_element = jQuery(this);
         li_element.removeClass('selected');
         var color_string = li_element.attr('class');
         
-        // TODO FIXME seems to only update the view and not the model
         that.selected_field.set({
             'color': color_string
         });
         
-        that.close();
     });
     
     jsb.on('ChooseColorOverlay::OPEN', function(values)
