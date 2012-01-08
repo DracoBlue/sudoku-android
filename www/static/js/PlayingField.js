@@ -9,7 +9,6 @@ PlayingField = function(dom_element, options)
     this.initializeCollections();
     this.initializeRandomData();
     this.initializeListeners();
-
 };
 
 PlayingField.prototype.initializeListeners = function()
@@ -151,12 +150,18 @@ PlayingField.prototype.initializeCollections = function()
         
         if (win) {
             var now = new Date();
+            var time_in_seconds = Math.ceil((now.getTime() - that.start_time.getTime()) / 1000);
             
             jsb.fireEvent('PlayingField::CLOSE');
+            jsb.fireEvent('Level::FINISHED', {
+                "name": that.level_name,
+                "time_in_seconds": time_in_seconds
+            });
             jsb.fireEvent('YouWon::OPEN', {
                 "level_name": that.level_name,
-                "time_in_seconds": Math.ceil((now.getTime() - that.start_time.getTime()) / 1000)
+                "time_in_seconds": time_in_seconds
             });
+            
             console.log("you win!!");
         }
     });

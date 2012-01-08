@@ -3,6 +3,9 @@ LevelList = function(dom_element, options)
     this.dom_element = jQuery(dom_element);
     this.ol_element = jQuery('<ol />');
     this.dom_element.append(this.ol_element);
+    this.finished_levels = new FinishedLevels();
+    this.finished_levels.fetch();
+    this.levels = new Backbone.Collection();
     this.initializeLevels();
     this.initializeLevelsFromStrings();
     this.initializeListeners();
@@ -12,6 +15,16 @@ LevelList.prototype.initializeListeners = function()
 {
     var that = this;
     
+    jsb.on('Level::FINISHED', function(values)
+    {
+        that.finished_levels.create({"name": values.name, "time_in_seconds": values.time_in_seconds});
+        
+        var level = that.levels.find(function(current_level) {
+            return current_level.get('name') === values.name ? true : false;
+        });
+        
+        level.set({'finished': true});
+    });
 
     jsb.on('LevelList::OPEN', function()
     {
@@ -378,8 +391,23 @@ LevelList.prototype.initializeLevelsFromStrings = function() {
 
 LevelList.prototype.createLevel = function(data)
 {
+    var that = this;
+    
+    data.finished = that.finished_levels.hasFinishedLevelByName(data.name) ? true : false;
+    
+    var level = new Level(data);
+    this.levels.add(level);
+    
+    /*
+     * TODO: refactor into LevelListItemView
+     */
     var li_element = jQuery('<li />');
-    li_element.text(data.name);
+    
+    level.bind('change', function() {
+        li_element.text(data.name + ' (' + (level.get('finished') ? 'geschafft' : 'neu') + ')');
+    });
+    
+    li_element.text(data.name + (level.get('finished') ? ' (geschafft)' : '(neu)'));
     li_element.bind('click', function()
     {
         jsb.fireEvent('LevelList::CLOSE');
