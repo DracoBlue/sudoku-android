@@ -15,7 +15,7 @@ YouWon.prototype.initializeListeners = function()
     jsb.on('YouWon::OPEN', function(values)
     {
         that.dom_element.find('.js_name').text(values.level_name);
-        that.dom_element.find('.js_time').text('2 Sekunden!');
+        that.dom_element.find('.js_time').text(values.time_in_seconds + ' Sekunden!');
         that.dom_element.removeClass('hide');
     });
 

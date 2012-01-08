@@ -4,6 +4,7 @@ PlayingField = function(dom_element, options)
     this.grid_models = {};
     this.dom_element = jQuery(dom_element);
     this.level_name = null;
+    this.start_time = null;
     this.initializeGrid();
     this.initializeCollections();
     this.initializeRandomData();
@@ -33,6 +34,7 @@ PlayingField.prototype.initializeListeners = function()
     jsb.on('PlayingField::LOAD_LEVEL', function(data)
     {
         that.level_name = data.name;
+        that.start_time = new Date();
         for ( var x = 0; x < 4; x++)
         {
             for ( var y = 0; y < 4; y++)
@@ -148,10 +150,12 @@ PlayingField.prototype.initializeCollections = function()
         }, true );
         
         if (win) {
+            var now = new Date();
+            
             jsb.fireEvent('PlayingField::CLOSE');
             jsb.fireEvent('YouWon::OPEN', {
                 "level_name": that.level_name,
-                "time_in_seconds": 123
+                "time_in_seconds": Math.ceil((now.getTime() - that.start_time.getTime()) / 1000)
             });
             console.log("you win!!");
         }
