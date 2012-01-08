@@ -4,6 +4,7 @@ LevelList = function(dom_element, options)
     this.ol_element = jQuery('<ol />');
     this.dom_element.append(this.ol_element);
     this.initializeLevels();
+    this.initializeLevelsFromStrings();
     this.initializeListeners();
 };
 
@@ -71,6 +72,309 @@ LevelList.prototype.initializeLevels = function()
     });
     
 };
+
+LevelList.prototype.initializeLevelsFromStrings = function() {
+    
+    var levelStrings = [
+    //red='r'
+    //green='g'
+    //blue='b'
+    //yellow='y'
+    //empty='.'
+
+    // demo
+    [
+    "ryb.",
+    ".gry",
+    "..y.",
+    ".b.r",
+    ],[
+    // level 1
+    ".rgy",
+    "y..b",
+    "g...",
+    ".by.",
+    ],[
+    "grb.",
+    "y..r",
+    "...g",
+    ".gy.",
+    ],[
+    ".brg",
+    "r..y",
+    "g...",
+    ".yg.",
+    ],[
+
+    ".ygb",
+    "....",
+    "yr.g",
+    ".b.r",
+    ],[
+
+    "bgy.",
+    "....",
+    "g.ry",
+    "r.b.",
+    ],[
+
+    ".gy.",
+    "y.r.",
+    ".r..",
+    ".ybr",
+    ],[
+
+    ".yg.",
+    ".r.y",
+    "..r.",
+    "rby.",
+    ],[
+
+    "b.y.",
+    ".rbg",
+    "..g.",
+    "g..y",
+    ],[
+
+    "r..y",
+    "..b.",
+    ".ryg",
+    "g.r.",
+    ],[
+
+    "...r",
+    "gyr.",
+    "brbg",
+    "r...",
+    ],[
+
+    "brg.",
+    ".gy.",
+    "g.b.",
+    ".b..",
+    ],[
+
+    // level 2
+
+    "r..y",
+    ".bg.",
+    ".ry.",
+    "b..g",
+    ],[
+
+    ".bg.",
+    "r..y",
+    "b..g",
+    ".ry.",
+    ],[
+
+    "rb..",
+    "..br",
+    "..gy",
+    "ry..",
+    ],[
+
+    "b.r.",
+    ".y.g",
+    "y.g.",
+    ".b.r",
+    ],[
+
+    "r..b",
+    ".b.y",
+    "b.y.",
+    "y..r",
+    ],[
+
+    "b.rg",
+    ".r..",
+    "..g.",
+    "rg.b",
+    ],[
+
+    "r..b",
+    "g.r.",
+    ".g.r",
+    "b..g",
+    ],[
+
+    "..g.",
+    "rgy.",
+    ".r.y",
+    "b.r.",
+    ],[
+
+    "rb..",
+    "..b.",
+    ".yr.",
+    "b..y",
+    ],[
+
+    "r..b",
+    "yb..",
+    "..gy",
+    "...r",
+    ],[
+
+    // level 3
+
+    "..b.",
+    ".g..",
+    "g..y",
+    ".r.b",
+    ],[
+
+    "b..y",
+    "g..r",
+    ".br.",
+    "....",
+    ],[
+
+    "yr..",
+    "..r.",
+    "..b.",
+    "bg..",
+    ],[
+
+    ".b..",
+    "y.b.",
+    "...r",
+    "g.r.",
+    ],[
+
+    "byr.",
+    "r...",
+    "..y.",
+    "...g",
+    ],[
+
+    "...g",
+    ".ry.",
+    ".gb.",
+    "y...",
+    ],[
+
+    "r..g",
+    "..y.",
+    ".g..",
+    "y..b",
+    ],[
+
+    "..br",
+    "...g",
+    ".g..",
+    "y..b",
+    ],[
+
+    "..g.",
+    "..ry",
+    "gy..",
+    ".b..",
+    ],[
+
+    "yr..",
+    "g...",
+    "...g",
+    "..by",
+    ],[
+
+    // level 4
+
+    "....",
+    "b...",
+    "y..r",
+    "...g",
+    ],[
+
+    ".y..",
+    ".rb.",
+    "..g.",
+    "....",
+    ],[
+
+    "b...",
+    ".g.y",
+    "..r.",
+    "....",
+    ],[
+
+    ".rg.",
+    "....",
+    "by..",
+    "....",
+    ],[
+
+    "....",
+    "b...",
+    ".y.b",
+    "..r.",
+    ],[
+
+    ".g..",
+    "..r.",
+    ".y..",
+    "..b.",
+    ],[
+
+    "....",
+    "g..b",
+    ".rb.",
+    "....",
+    ],[
+
+    ".r..",
+    "..g.",
+    "...y",
+    "..r.",
+    ],[
+
+    "b...",
+    ".r..",
+    ".g.b",
+    "....",
+    ],[
+
+    "..r.",
+    "....",
+    ".by.",
+    "r...",
+    ]
+    ]
+    
+    var that = this;
+    
+    var char_map = {
+        'r': 'red',
+        'g': 'green',
+        'b': 'blue',
+        'y': 'yellow',
+        '.': 'empty'
+    }
+
+    function split_string (s) {
+        //assume all strings are of length 4
+        return [s[0],s[1],s[2],s[3]];
+    }
+    
+    function from_string (string_arr) {
+        return _.map(string_arr, function(s){
+            var splitted = split_string(s);
+            return _.map(splitted, function(c){
+                return char_map[c];
+            })
+        });
+    }
+    
+    _.each(levelStrings, function(level, n){
+        that.createLevel({
+            'name':"level_" + n,
+            'field': from_string(level)
+        });
+    });
+    
+}
+
+
 
 LevelList.prototype.createLevel = function(data)
 {
