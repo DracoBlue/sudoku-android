@@ -65,12 +65,3 @@ Grid = Backbone.Collection.extend({
         return this.size === _.uniq(colors).length;
     }
 });
-
-Line = Backbone.Collection.extend({
-    model: PlayingFieldGridItem,
-    hasAllDifferentColors: function () {
-        var colors = this.pluck("color");
-        console.log(colors);
-        return colors.length === _.uniq(colors).length;
-    }
-});
