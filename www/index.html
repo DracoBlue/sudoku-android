@@ -4,6 +4,7 @@
         <title>Sudoku Lernapp</title>
         <link rel="stylesheet" type="text/css" href="static/css/reset.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="static/css/all.css" media="all"/>
+        <link rel="stylesheet" type="text/css" href="static/css/buttons.css" media="all"/>
         <script type="text/javascript" src="static/libs/jquery-1.7.1.js"></script>
         <script type="text/javascript" src="static/libs/underscore-1.2.3.js"></script>
         <script type="text/javascript" src="static/libs/backbone-0.5.3.js"></script>
@@ -26,28 +27,35 @@
             
         </div>
         
-        <div class="playing_field jsb_ jsb_playing_field hide">
-            <button class="js_menu_button">Menü</button>
+        <div class="game">
+          
+            <div class="playing_field jsb_ jsb_playing_field hide">
+                <button href="#" class="js_menu_button button orange round glass">Abbrechen</button>
+            </div>
+        
+            <div class="choose_color_overlay jsb_ jsb_choose_color_overlay hide">
+                <ul>
+                    <li class="green"></li>
+                    <li class="blue"></li>
+                    <li class="red"></li>
+                    <li class="yellow"></li>
+                    <li class="empty"></li>
+                </ul>
+            </div>
+
+            <div class="you_won jsb_ jsb_you_won hide">
+                <div>
+                  Gratulation, Du hast <span class="js_name">Das Level</span> geschafft!                  
+                </div>
+                <div>                  
+                  Dafür hast Du nur <span class="js_time">5 Sekunden</span> und <span class="js_used_moves">5 Züge</span> gebraucht. Klasse!
+                </div>
+
+                <button class="js_continue_button button blue round glass">Weiter</button>
+            </div>
+        
         </div>
         
-        <div class="choose_color_overlay jsb_ jsb_choose_color_overlay hide">
-            <ul>
-                <li class="green">green</li>
-                <li class="blue">blue</li>
-                <li class="red">red</li>
-                <li class="yellow">yellow</li>
-                <li class="empty">empty</li>
-            </ul>
-        </div>
-
-        <div class="you_won jsb_ jsb_you_won hide">
-            Gratulation, Du hast <span class="js_name">Das Level</span> geschafft!
-            
-            Dafür hast Du nur <span class="js_time">5 Sekunden</span> und <span class="js_used_moves">5 Züge</span> gebraucht. Klasse!
-            
-            
-            <button class="js_continue_button">Weiter</button>
-        </div>
         
     </body>
 </html>

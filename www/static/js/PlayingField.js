@@ -4,6 +4,7 @@ PlayingField = function(dom_element, options)
     this.dom_element = jQuery(dom_element);
     this.level_name = null;
     this.start_time = null;
+    this.animal = null;
     this.used_moves = 0;
     this.grid = new Grid();
     this.initializeGrid();
@@ -50,9 +51,8 @@ PlayingField.prototype.initializeListeners = function()
 
     jsb.on('PlayingField::LOAD_LEVEL', function(data)
     {
-        that.level_name = data.name;
-        that.start_time = new Date();
         that.clearGrid();
+        
         
         that.grid.each(function(grid_item) {
             var x = grid_item.get('x');
@@ -64,7 +64,12 @@ PlayingField.prototype.initializeListeners = function()
             });
         });
         
+        that.level_name = data.name;
+        
+        that.dom_element.removeClass("cow duck hare pig").addClass(data.animal);
+        
         that.used_moves = 0;
+        that.start_time = new Date();
     });
 };
 

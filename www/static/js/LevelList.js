@@ -41,6 +41,7 @@ LevelList.prototype.initializeLevels = function()
 {
     this.createLevel({
         'name': 'The Difficult One',
+        'animal': 'duck',
         'field': [
                 [
                         'red', 'green', 'empty', 'blue'
@@ -56,6 +57,7 @@ LevelList.prototype.initializeLevels = function()
     
     this.createLevel({
         'name': 'Another One',
+        'animal': 'hare',
         'field': [
                 [
                         'blue', 'empty', 'empty', 'empty'
@@ -71,6 +73,7 @@ LevelList.prototype.initializeLevels = function()
     
     this.createLevel({
         'name': 'Test Winning',
+        'animal': 'cow',
         'field': [
                 [
                         'blue',   'red',    'green',  'yellow'
@@ -96,262 +99,56 @@ LevelList.prototype.initializeLevelsFromStrings = function() {
     //empty='.'
 
     // demo
-    [
-    "ryb.",
-    ".gry",
-    "..y.",
-    ".b.r",
-    ],[
+    {animal:"cow", fields:["ryb.",".gry","..y.",".b.r",]},
+
     // level 1
-    ".rgy",
-    "y..b",
-    "g...",
-    ".by.",
-    ],[
-    "grb.",
-    "y..r",
-    "...g",
-    ".gy.",
-    ],[
-    ".brg",
-    "r..y",
-    "g...",
-    ".yg.",
-    ],[
-
-    ".ygb",
-    "....",
-    "yr.g",
-    ".b.r",
-    ],[
-
-    "bgy.",
-    "....",
-    "g.ry",
-    "r.b.",
-    ],[
-
-    ".gy.",
-    "y.r.",
-    ".r..",
-    ".ybr",
-    ],[
-
-    ".yg.",
-    ".r.y",
-    "..r.",
-    "rby.",
-    ],[
-
-    "b.y.",
-    ".rbg",
-    "..g.",
-    "g..y",
-    ],[
-
-    "r..y",
-    "..b.",
-    ".ryg",
-    "g.r.",
-    ],[
-
-    "...r",
-    "gyr.",
-    "brbg",
-    "r...",
-    ],[
-
-    "brg.",
-    ".gy.",
-    "g.b.",
-    ".b..",
-    ],[
+    {animal:"cow", fields:[".rgy","y..b","g...",".by.",]},
+    {animal:"cow", fields:["grb.","y..r","...g",".gy.",]},
+    {animal:"cow", fields:[".brg","r..y","g...",".yg.",]},
+    {animal:"cow", fields:[".ygb","....","yr.g",".b.r",]},
+    {animal:"cow", fields:["bgy.","....","g.ry","r.b.",]},
+    {animal:"cow", fields:[".gy.","y.r.",".r..",".ybr",]},
+    {animal:"cow", fields:[".yg.",".r.y","..r.","rby.",]},
+    {animal:"cow", fields:["b.y.",".rbg","..g.","g..y",]},
+    {animal:"cow", fields:["r..y","..b.",".ryg","g.r.",]},
+    {animal:"cow", fields:["...r","gyr.","brbg","r...",]},
+    {animal:"cow", fields:["brg.",".gy.","g.b.",".b..",]},
 
     // level 2
-
-    "r..y",
-    ".bg.",
-    ".ry.",
-    "b..g",
-    ],[
-
-    ".bg.",
-    "r..y",
-    "b..g",
-    ".ry.",
-    ],[
-
-    "rb..",
-    "..br",
-    "..gy",
-    "ry..",
-    ],[
-
-    "b.r.",
-    ".y.g",
-    "y.g.",
-    ".b.r",
-    ],[
-
-    "r..b",
-    ".b.y",
-    "b.y.",
-    "y..r",
-    ],[
-
-    "b.rg",
-    ".r..",
-    "..g.",
-    "rg.b",
-    ],[
-
-    "r..b",
-    "g.r.",
-    ".g.r",
-    "b..g",
-    ],[
-
-    "..g.",
-    "rgy.",
-    ".r.y",
-    "b.r.",
-    ],[
-
-    "rb..",
-    "..b.",
-    ".yr.",
-    "b..y",
-    ],[
-
-    "r..b",
-    "yb..",
-    "..gy",
-    "...r",
-    ],[
+    {animal:"cow", fields:["r..y",".bg.",".ry.","b..g",]},
+    {animal:"cow", fields:[".bg.","r..y","b..g",".ry.",]},
+    {animal:"cow", fields:["rb..","..br","..gy","ry..",]},
+    {animal:"cow", fields:["b.r.",".y.g","y.g.",".b.r",]},
+    {animal:"cow", fields:["r..b",".b.y","b.y.","y..r",]},
+    {animal:"cow", fields:["b.rg",".r..","..g.","rg.b",]},
+    {animal:"cow", fields:["r..b","g.r.",".g.r","b..g",]},
+    {animal:"cow", fields:["..g.","rgy.",".r.y","b.r.",]},
+    {animal:"cow", fields:["rb..","..b.",".yr.","b..y",]},
+    {animal:"cow", fields:["r..b","yb..","..gy","...r",]},
 
     // level 3
-
-    "..b.",
-    ".g..",
-    "g..y",
-    ".r.b",
-    ],[
-
-    "b..y",
-    "g..r",
-    ".br.",
-    "....",
-    ],[
-
-    "yr..",
-    "..r.",
-    "..b.",
-    "bg..",
-    ],[
-
-    ".b..",
-    "y.b.",
-    "...r",
-    "g.r.",
-    ],[
-
-    "byr.",
-    "r...",
-    "..y.",
-    "...g",
-    ],[
-
-    "...g",
-    ".ry.",
-    ".gb.",
-    "y...",
-    ],[
-
-    "r..g",
-    "..y.",
-    ".g..",
-    "y..b",
-    ],[
-
-    "..br",
-    "...g",
-    ".g..",
-    "y..b",
-    ],[
-
-    "..g.",
-    "..ry",
-    "gy..",
-    ".b..",
-    ],[
-
-    "yr..",
-    "g...",
-    "...g",
-    "..by",
-    ],[
+    {animal:"cow", fields:["..b.",".g..","g..y",".r.b",]},
+    {animal:"cow", fields:["b..y","g..r",".br.","....",]},
+    {animal:"cow", fields:["yr..","..r.","..b.","bg..",]},
+    {animal:"cow", fields:[".b..","y.b.","...r","g.r.",]},
+    {animal:"cow", fields:["byr.","r...","..y.","...g",]},
+    {animal:"cow", fields:["...g",".ry.",".gb.","y...",]},
+    {animal:"cow", fields:["r..g","..y.",".g..","y..b",]},
+    {animal:"cow", fields:["..br","...g",".g..","y..b",]},
+    {animal:"cow", fields:["..g.","..ry","gy..",".b..",]},
+    {animal:"cow", fields:["yr..","g...","...g","..by",]},
 
     // level 4
-
-    "....",
-    "b...",
-    "y..r",
-    "...g",
-    ],[
-
-    ".y..",
-    ".rb.",
-    "..g.",
-    "....",
-    ],[
-
-    "b...",
-    ".g.y",
-    "..r.",
-    "....",
-    ],[
-
-    ".rg.",
-    "....",
-    "by..",
-    "....",
-    ],[
-
-    "....",
-    "b...",
-    ".y.b",
-    "..r.",
-    ],[
-
-    ".g..",
-    "..r.",
-    ".y..",
-    "..b.",
-    ],[
-
-    "....",
-    "g..b",
-    ".rb.",
-    "....",
-    ],[
-
-    ".r..",
-    "..g.",
-    "...y",
-    "..r.",
-    ],[
-
-    "b...",
-    ".r..",
-    ".g.b",
-    "....",
-    ],[
-
-    "..r.",
-    "....",
-    ".by.",
-    "r...",
-    ]
+    {animal:"cow", fields:["....","b...","y..r","...g",]},
+    {animal:"cow", fields:[".y..",".rb.","..g.","....",]},
+    {animal:"cow", fields:["b...",".g.y","..r.","....",]},
+    {animal:"cow", fields:[".rg.","....","by..","....",]},
+    {animal:"cow", fields:["....","b...",".y.b","..r.",]},
+    {animal:"cow", fields:[".g..","..r.",".y..","..b.",]},
+    {animal:"cow", fields:["....","g..b",".rb.","....",]},
+    {animal:"cow", fields:[".r..","..g.","...y","..r.",]},
+    {animal:"cow", fields:["b...",".r..",".g.b","....",]},
+    {animal:"cow", fields:["..r.","....",".by.","r...",]}
     ]
     
     var that = this;
@@ -380,8 +177,9 @@ LevelList.prototype.initializeLevelsFromStrings = function() {
     
     _.each(levelStrings, function(level, n){
         that.createLevel({
-            'name':"level_" + n,
-            'field': from_string(level)
+            'name':"Level " + n,
+            'animal': level.animal,
+            'field': from_string(level.fields)
         });
     });
     
@@ -407,13 +205,14 @@ LevelList.prototype.createLevel = function(data)
         li_element.text(data.name + ' (' + (level.get('finished') ? 'geschafft' : 'neu') + ')');
     });
     
-    li_element.text(data.name + (level.get('finished') ? ' (geschafft)' : '(neu)'));
+    li_element.text(data.name + (level.get('finished') ? ' (geschafft)' : ' (neu)'));
     li_element.bind('click', function()
     {
         jsb.fireEvent('LevelList::CLOSE');
         jsb.fireEvent('PlayingField::OPEN');
         jsb.fireEvent('PlayingField::LOAD_LEVEL', {
             'field': data.field,
+            'animal': data.animal,
             'name': data.name
         });
     });
