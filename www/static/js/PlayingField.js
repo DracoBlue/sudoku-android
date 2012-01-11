@@ -1,14 +1,12 @@
 PlayingField = function(dom_element, options)
 {
     this.grid_dom_elements = {};
-    this.grid_models = {};
     this.dom_element = jQuery(dom_element);
     this.level_name = null;
     this.start_time = null;
     this.used_moves = 0;
+    this.grid = new Grid();
     this.initializeGrid();
-    this.initializeCollections();
-    this.initializeRandomData();
     this.initializeListeners();
 };
 
@@ -20,6 +18,25 @@ PlayingField.prototype.initializeListeners = function()
         jsb.fireEvent('PlayingField::CLOSE');
         jsb.fireEvent('LevelList::OPEN');
     });
+    
+    this.grid.bind("is_complete", function() {
+        var now = new Date();
+        var time_in_seconds = Math.ceil((now.getTime() - that.start_time.getTime()) / 1000);
+        
+        jsb.fireEvent('PlayingField::CLOSE');
+        jsb.fireEvent('Level::FINISHED', {
+            "name": that.level_name,
+            "used_moves": that.used_moves,
+            "time_in_seconds": time_in_seconds
+        });
+        jsb.fireEvent('YouWon::OPEN', {
+            "level_name": that.level_name,
+            "used_moves": that.used_moves,
+            "time_in_seconds": time_in_seconds
+        });
+        
+        console.log("you win!!");
+    });    
     
     jsb.on('PlayingField::OPEN', function()
     {
@@ -36,19 +53,27 @@ PlayingField.prototype.initializeListeners = function()
         that.level_name = data.name;
         that.start_time = new Date();
         that.used_moves = 0;
-        for ( var x = 0; x < 4; x++)
-        {
-            for ( var y = 0; y < 4; y++)
-            {
-                var color_string = data.field[x][y];
-                
-                that.grid_models[x][y].set({
-                    'fixed': color_string === 'empty' ? false : true
-                });
-                
-                that.setFieldColor(x, y, color_string);
-            }
-        }
+        that.clearGrid();
+        
+        that.grid.each(function(grid_item) {
+            var x = grid_item.get('x');
+            var y = grid_item.get('y');
+            var color_string = data.field[x][y];
+            grid_item.set({
+                'fixed': color_string === 'empty' ? false : true,
+                'color': color_string
+            });
+        });
+    });
+};
+
+PlayingField.prototype.clearGrid = function()
+{
+    this.grid.each(function(grid_item) {
+        grid_item.set({
+            'fixed': false,
+            'color': 'empty'
+        });
     });
 };
 
@@ -90,8 +115,7 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
         that.onGridColorChanged(this);
     });
 
-    this.grid_models[x] = this.grid_models[x] || {};
-    this.grid_models[x][y] = grid_model;
+    this.grid.add(grid_model);
 
     var grid_view = new PlayingFieldGridItemView({
         model: grid_model
@@ -105,101 +129,9 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
     return grid_view;
 };
 
-PlayingField.prototype.initializeCollections = function()
-{
-    var that = this;
-    
-    this.grid = new Grid();
-    window.grid = this.grid;
-    
-    _.each(this.grid_models, function(col) {
-        _.each(col, function(cell) {
-            that.grid.add(cell);
-        });
-    });
-    
-    this.grid.bind("change", function(cell){
-        //console.log(cell + " has changed");
-        //console.log(that.grid);
-        if (that.grid.isFilled()) {
-            //console.log("grid is filled");
-            that.grid.trigger("all_cells_filled");
-        };
-    });
-
-    this.rows = [];
-    this.cols = [];
-    
-    _.each(this.grid_models, function(col, x) {
-        _.each(col, function(cell, y){
-            that.rows[x] = that.rows[x] || new Line();
-            that.rows[x].add(cell);
-
-            that.cols[y] = that.cols[y] || new Line();
-            that.cols[y].add(cell);
-        });
-    });
-
-    this.grid.bind("all_cells_filled", function() {
-        
-        console.log('on all_cells_filled');
-        
-        var rows_and_cols = _.union(that.rows, that.cols)
-        //window.rows_and_cols = rows_and_cols;
-        
-        var win = _.reduce(rows_and_cols, function(memo, line) {
-            return memo && line.hasAllDifferentColors();
-        }, true );
-        
-        if (win) {
-            var now = new Date();
-            var time_in_seconds = Math.ceil((now.getTime() - that.start_time.getTime()) / 1000);
-            
-            jsb.fireEvent('PlayingField::CLOSE');
-            jsb.fireEvent('Level::FINISHED', {
-                "name": that.level_name,
-                "used_moves": that.used_moves,
-                "time_in_seconds": time_in_seconds
-            });
-            jsb.fireEvent('YouWon::OPEN', {
-                "level_name": that.level_name,
-                "used_moves": that.used_moves,
-                "time_in_seconds": time_in_seconds
-            });
-            
-            console.log("you win!!");
-        }
-    });
-    
-}
-
-PlayingField.prototype.initializeRandomData = function()
-{
-    var random_colors = [
-            'red', 'green', 'blue', 'yellow', 'empty'
-    ];
-    for ( var x = 0; x < 4; x++)
-    {
-        for ( var y = 0; y < 4; y++)
-        {
-            var random_position = Math.floor(5 * Math.random());
-            this.setFieldColor(x, y, random_colors[random_position]);
-        }
-    }
-};
-
-
 PlayingField.prototype.onGridColorChanged = function(model)
 {
     console.log('onGridColorChanged', model.get('x'), 'x', model.get('y'), ':', model.get('color'));
-};
-
-PlayingField.prototype.setFieldColor = function(x, y, color_string)
-{
-    this.grid_models[x][y].set({
-        'color': color_string
-    });
-
 };
 
 jsb.registerHandler('playing_field', PlayingField);
