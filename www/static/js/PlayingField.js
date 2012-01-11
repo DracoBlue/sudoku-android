@@ -52,7 +52,6 @@ PlayingField.prototype.initializeListeners = function()
     {
         that.level_name = data.name;
         that.start_time = new Date();
-        that.used_moves = 0;
         that.clearGrid();
         
         that.grid.each(function(grid_item) {
@@ -64,6 +63,8 @@ PlayingField.prototype.initializeListeners = function()
                 'color': color_string
             });
         });
+        
+        that.used_moves = 0;
     });
 };
 
