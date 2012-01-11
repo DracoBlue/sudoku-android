@@ -112,7 +112,6 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
     grid_model.bind('change:color', function()
     {
         that.used_moves++;
-        that.onGridColorChanged(this);
     });
 
     this.grid.add(grid_model);
@@ -127,11 +126,6 @@ PlayingField.prototype.createAndInitializeGridElementView = function(x, y)
     grid_view.render();
 
     return grid_view;
-};
-
-PlayingField.prototype.onGridColorChanged = function(model)
-{
-    console.log('onGridColorChanged', model.get('x'), 'x', model.get('y'), ':', model.get('color'));
 };
 
 jsb.registerHandler('playing_field', PlayingField);
