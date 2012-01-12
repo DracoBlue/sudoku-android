@@ -24,7 +24,6 @@ PlayingField.prototype.initializeListeners = function()
         var now = new Date();
         var time_in_seconds = Math.ceil((now.getTime() - that.start_time.getTime()) / 1000);
         
-        jsb.fireEvent('PlayingField::CLOSE');
         jsb.fireEvent('Level::FINISHED', {
             "name": that.level_name,
             "used_moves": that.used_moves,
@@ -37,6 +36,7 @@ PlayingField.prototype.initializeListeners = function()
         });
         
         console.log("you win!!");
+                
     });    
     
     jsb.on('PlayingField::OPEN', function()
@@ -48,6 +48,13 @@ PlayingField.prototype.initializeListeners = function()
     {
         that.dom_element.addClass('hide');
     });
+    
+    jsb.on('YouWon::CLOSE', function() 
+    {
+        // you-won dialog should overlay the game
+        jsb.fireEvent('PlayingField::CLOSE');
+    });
+
 
     jsb.on('PlayingField::LOAD_LEVEL', function(data)
     {

@@ -11,10 +11,25 @@ body {
 }
 
 
+.you_won {
+    height:250px;
+    width:250px;
+    margin:auto;
+}
+
+.controls {
+    width:200px;
+    margin:auto;
+}
+
+.centered {
+    margin:auto;
+}
+
 .playing_field > ol > ol > li {
     display: inline-block;
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -24,7 +39,9 @@ body {
 }
 
 .playing_field li.fixed {
-    opacity: 0.5;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
 }
 
 
