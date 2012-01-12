@@ -6,8 +6,8 @@ body {
 }
 
 .playing_field {
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 340px;
 }
 
 
@@ -15,6 +15,12 @@ body {
     display: inline-block;
     width: 75px;
     height: 75px;
+    
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin:5px;
+    
 }
 
 .playing_field li.fixed {
@@ -26,11 +32,11 @@ body {
     background-color: green;
 }
 
-/*
+
 .playing_field li.red {
     background-color: red;
 }
-*/
+
 .playing_field li.blue {
     background-color: blue;
 }
@@ -43,77 +49,100 @@ body {
     background-color: #aaaaaa;
 }
 
+.red, .green, .blue, .yellow, .empty {
+    -webkit-background-size:100% 100%;
+}
 
 .pig .red {
     background-image:url('../img/pig_red.jpg');
-    -webkit-background-size:100% 100%;
 }
 .pig .blue {
     background-image:url('../img/pig_blue.jpg');
-    -webkit-background-size:100% 100%;
 }
 .pig .green {
     background-image:url('../img/pig_green.jpg');
-    -webkit-background-size:100% 100%;
 }
 .pig .yellow {
     background-image:url('../img/pig_yellow.jpg');
-    -webkit-background-size:100% 100%;
 }
 
 
 .cow .red {
     background-image:url('../img/cow_red.jpg');
-    -webkit-background-size:100% 100%;
 }
 .cow .blue {
     background-image:url('../img/cow_blue.jpg');
-    -webkit-background-size:100% 100%;
 }
 .cow .green {
     background-image:url('../img/cow_green.jpg');
-    -webkit-background-size:100% 100%;
 }
 .cow .yellow {
     background-image:url('../img/cow_yellow.jpg');
-    -webkit-background-size:100% 100%;
 }
 
 
 .hare .red {
     background-image:url('../img/hare_red.jpg');
-    -webkit-background-size:100% 100%;
 }
 .hare .blue {
     background-image:url('../img/hare_blue.jpg');
-    -webkit-background-size:100% 100%;
 }
 .hare .green {
     background-image:url('../img/hare_green.jpg');
-    -webkit-background-size:100% 100%;
 }
 .hare .yellow {
     background-image:url('../img/hare_yellow.jpg');
-    -webkit-background-size:100% 100%;
 }
 
 
 .duck .red {
     background-image:url('../img/duck_red.jpg');
-    -webkit-background-size:100% 100%;
 }
 .duck .blue {
     background-image:url('../img/duck_blue.jpg');
-    -webkit-background-size:100% 100%;
 }
 .duck .green {
     background-image:url('../img/duck_green.jpg');
-    -webkit-background-size:100% 100%;
 }
 .duck .yellow {
     background-image:url('../img/duck_yellow.jpg');
-    -webkit-background-size:100% 100%;
 }
+
+
+
+.zebra .red,
+.zebra .blue,
+.zebra .green,
+.zebra .yellow
+ {
+    background: url('../img/new/zebra.png') no-repeat scroll top left;
+}
+
+.tiger .red,
+.tiger .blue,
+.tiger .green,
+.tiger .yellow
+{
+    background: url('../img/new/tiger.png') no-repeat scroll top left;
+} 
+
+.meerkat .red,
+.meerkat .blue,
+.meerkat .green,
+.meerkat .yellow
+{
+    background: url('../img/new/meerkat.png') no-repeat scroll top left;
+}
+
+.hippo .red,
+.hippo .blue,
+.hippo .green,
+.hippo .yellow
+{
+    background: url('../img/new/hippo.png') no-repeat scroll top left;
+}
+
+
 
 .choose_color_overlay {
     width: 260px;
