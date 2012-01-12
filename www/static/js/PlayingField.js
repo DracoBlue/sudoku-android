@@ -66,7 +66,7 @@ PlayingField.prototype.initializeListeners = function()
         
         that.level_name = data.name;
         
-        that.dom_element.removeClass("cow duck hare pig").addClass(data.animal);
+        that.dom_element.removeClass("hippo tiger meerkat zebra").addClass(data.animal);
         
         that.used_moves = 0;
         that.start_time = new Date();
