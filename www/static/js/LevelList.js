@@ -209,7 +209,7 @@ LevelList.prototype.createLevel = function(data)
     li_element.bind('click', function()
     {
         jsb.fireEvent('LevelList::CLOSE');
-        jsb.fireEvent('PlayingField::OPEN');
+        jsb.fireEvent('Instructions::OPEN');
         jsb.fireEvent('PlayingField::LOAD_LEVEL', {
             'field': data.field,
             'animal': data.animal,

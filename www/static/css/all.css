@@ -16,7 +16,7 @@ body {
 }
 
 
-.you_won {
+.you_won, .instructions {
     height:100%;
     width:100%;
     background-color: #888;
