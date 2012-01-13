@@ -131,6 +131,9 @@ body {
     background-image:url('../img/duck_yellow.jpg');
 }
 
+.empty {
+    background: url('../img/new/empty.png') no-repeat scroll top left;
+}
 
 
 .zebra .red,
