@@ -1,5 +1,6 @@
 body {
     font-family: HelveticaNeue-Light, Helvetica, Arial, Sans-serif;
+    line-height:1.5;
 }
 
 .game {
@@ -22,6 +23,7 @@ body {
     background-color: #888;
     padding: 15px;
     font-size: 32px;
+    color:#333;
 }
 
 .controls {
