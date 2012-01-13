@@ -55,6 +55,8 @@ PlayingFieldGridItemView = Backbone.View.extend({
         {
             element.addClass('fixed');
         }
+        element.hide();
+        element.fadeIn();
         //element.text(this.model.get('x') + ' ' + this.model.get('y') + ': ' + this.model.get('color'));
     }
 
