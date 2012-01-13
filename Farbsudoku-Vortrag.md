@@ -9,7 +9,7 @@
 - JavaScript
 - native Browser Wrapper
 
-## Vorteile  und
+## Vorteile von PhoneGap
 - Android app
 - iPhone app
 - WebApp
@@ -41,7 +41,7 @@
 
 
 ## Programming
-- alone
+- allein für sich
 - Treffen im Office
 - Pair Programming with Skype
 - Comments & Documentation

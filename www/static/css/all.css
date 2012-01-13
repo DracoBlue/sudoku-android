@@ -1,6 +1,11 @@
 body {
     font-family: HelveticaNeue-Light, Helvetica, Arial, Sans-serif;
 }
+
+.game {
+    width:100%;
+    position:relative;
+}
 .hide {
     display: none;
 }
@@ -12,9 +17,11 @@ body {
 
 
 .you_won {
-    height:250px;
-    width:250px;
-    margin:auto;
+    height:100%;
+    width:100%;
+    background-color: #888;
+    padding: 15px;
+    font-size: 32px;
 }
 
 .controls {
