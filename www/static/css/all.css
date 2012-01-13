@@ -11,9 +11,19 @@ body {
     display: none;
 }
 
+.playing_field,
+.you_won,
+.instructions,
+.level_list {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
 .playing_field {
     width: 340px;
     height: 340px;
+    background-color: #fff;
 }
 
 

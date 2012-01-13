@@ -29,11 +29,12 @@ LevelList.prototype.initializeListeners = function()
     jsb.on('LevelList::OPEN', function()
     {
         that.dom_element.removeClass('hide');
+        that.dom_element.hide().fadeIn();
     });
 
     jsb.on('LevelList::CLOSE', function()
     {
-        that.dom_element.addClass('hide');
+        that.dom_element.fadeOut();
     });
 };
 
