@@ -26,12 +26,24 @@ PlayingFieldGridItemView = Backbone.View.extend({
              */
             return;
         }
+        
+        /*
         console.log('Hit!', this.model.get('x'), this.model.get('y'));
 
         jsb.fireEvent('PlayingField::CLOSE');
         jsb.fireEvent('ChooseColorOverlay::OPEN', {
             'field': this.model
         });
+        */
+        var color_rotation = {
+            'empty' : 'blue',
+            'blue'  : 'red',
+            'red'   : 'yellow',
+            'yellow': 'green',
+            'green' : 'empty'
+        };
+        this.model.set({'color':color_rotation[this.model.get('color')]});
+        
     },
 
     render: function()

@@ -31,17 +31,16 @@ body {
     width: 70px;
     height: 70px;
     
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    margin:5px;
-    
-}
-
-.playing_field li.fixed {
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
+    margin:5px;    
+}
+
+.playing_field li.fixed {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
 }
 
 
