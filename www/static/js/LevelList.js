@@ -178,7 +178,7 @@ LevelList.prototype.initializeLevelsFromStrings = function() {
     
     _.each(levelStrings, function(level, n){
         that.createLevel({
-            'name':"Level " + n,
+            'name':"Level " + (n+1),
             'animal': level.animal,
             'field': from_string(level.fields)
         });
