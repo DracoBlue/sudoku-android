@@ -44,11 +44,12 @@ PlayingField.prototype.initializeListeners = function()
     jsb.on('PlayingField::OPEN', function()
     {
         that.dom_element.removeClass('hide');
+        that.dom_element.hide().fadeIn();
     });
 
     jsb.on('PlayingField::CLOSE', function()
     {
-        that.dom_element.addClass('hide');
+        that.dom_element.fadeOut();
     });
     
     /*

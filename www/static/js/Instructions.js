@@ -15,11 +15,12 @@ Instructions.prototype.initializeListeners = function()
     jsb.on('Instructions::OPEN', function(values)
     {
         that.dom_element.removeClass('hide');
+        that.dom_element.hide().fadeIn();
     });
 
     jsb.on('Instructions::CLOSE', function()
     {
-        that.dom_element.addClass('hide');
+        that.dom_element.fadeOut();
     });
 };
 
