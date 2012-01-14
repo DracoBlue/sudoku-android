@@ -15,17 +15,14 @@ Grid = Backbone.Collection.extend({
     },
     
     isFilled: function() {
-        return (!this.any_cell_undefined() && !this.any_cell_empty())
+        return !this.anyCellEmptyOrUndefined();
     },
-    any_cell_empty: function() {
+    
+    anyCellEmptyOrUndefined: function() {
         return this.any( function ( cell ) {
-            return cell.get("color") === 'empty';
+            var color = cell.get("color");
+            return (color === undefined) || (color === 'empty');
         });        
-    },
-    any_cell_undefined: function() {
-        return this.any( function ( cell ) {
-            return cell.get("color") === undefined;
-        });
     },
     
     isComplete: function() {
